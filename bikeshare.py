@@ -160,7 +160,15 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        # ask ipput to see the next five lines of raw data
+        show_data = input("\nwould you like to see the five lines of the raw data? Enter yes or no.\n").strip().lower()
+        counter = 0
+        while show_data == 'yes' and counter <= len(df):
 
+                print(df.iloc[counter:counter + 5, :])
+                counter += 5
+                show_data = input("\nwould you like to see the next five lines of data? Enter yes or no.\n").strip().lower()
+        #ask input to restart the program
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
