@@ -135,17 +135,21 @@ def user_stats(df):
     user_types = df['User Type'].value_counts()
     print("The user types are as follows: \n{}".format(user_types))
     # Display counts of gender
-    gender = df['Gender'].value_counts()
-    print("The counts of each gender of users are as follows:\n{}".format(gender))
+    try:
+        gender = df['Gender'].value_counts()
+        print("The counts of each gender of users are as follows:\n{}".format(gender))
+    except KeyError:
+        pass
     # Display earliest, most recent, and most common year of birth
-    earliest = df['Birth Year'].min()
-    print("The earliest birth year of user is: {}".format(earliest))
-    recent = df['Birth Year'].max()
-    print("The most recent birth year of users is: {}".format(recent))
-    common_birthyear = df['Birth Year'].mode()[0]
-    print("The most common birth year of users is: {}".format(common_birthyear))
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
+    try:
+        earliest = df['Birth Year'].min()
+        print("The earliest birth year of user is: {}".format(earliest))
+        recent = df['Birth Year'].max()
+        print("The most recent birth year of users is: {}".format(recent))
+        common_birthyear = df['Birth Year'].mode()[0]
+        print("The most common birth year of users is: {}".format(common_birthyear))
+    except KeyError:
+        pass
 #user_stats()
 def main():
     while True:
@@ -156,7 +160,15 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        # ask ipput to see the next five lines of raw data
+        show_data = input("\nwould you like to see the five lines of the raw data? Enter yes or no.\n").strip().lower()
+        counter = 0
+        while show_data == 'yes' and counter <= len(df):
 
+                print(df.iloc[counter:counter + 5, :])
+                counter += 5
+                show_data = input("\nwould you like to see the next five lines of data? Enter yes or no.\n").strip().lower()
+        #ask input to restart the program
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
