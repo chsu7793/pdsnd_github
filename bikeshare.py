@@ -141,14 +141,15 @@ def user_stats(df):
     except KeyError:
         pass
     # Display earliest, most recent, and most common year of birth
-    earliest = df['Birth Year'].min()
-    print("The earliest birth year of user is: {}".format(earliest))
-    recent = df['Birth Year'].max()
-    print("The most recent birth year of users is: {}".format(recent))
-    common_birthyear = df['Birth Year'].mode()[0]
-    print("The most common birth year of users is: {}".format(common_birthyear))
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
+    try:
+        earliest = df['Birth Year'].min()
+        print("The earliest birth year of user is: {}".format(earliest))
+        recent = df['Birth Year'].max()
+        print("The most recent birth year of users is: {}".format(recent))
+        common_birthyear = df['Birth Year'].mode()[0]
+        print("The most common birth year of users is: {}".format(common_birthyear))
+    except KeyError:
+        pass
 #user_stats()
 def main():
     while True:
