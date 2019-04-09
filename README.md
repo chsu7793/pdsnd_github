@@ -4,7 +4,7 @@ Project created on April 8 2019.
 Replace the Project Title
 
 ### Description
-Describe what your project is about and what it does
+Bikeshare user data from Chicago, New York City, and Washington. 
 
 ### Files used
 Include the files used
